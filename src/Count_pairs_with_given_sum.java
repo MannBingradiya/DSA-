@@ -1,0 +1,26 @@
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+
+public class Count_pairs_with_given_sum {
+    public static void main(String[] args) {
+//        int[] arr = {48, 24, 99, 51, 33, 39, 29, 83, 74, 72, 22, 46, 40, 51, 67, 37, 78, 76, 26, 28, 76, 25, 10, 65, 64, 47, 34, 88, 26, 49, 86, 73, 73, 36, 75, 5, 26, 4, 39, 99, 27, 12, 97, 67, 63, 15, 3, 92, 90};
+        int[] arr = {1, 5, 7, 1};
+        int k = 6, n = 4;
+        System.out.println(getPairsCount(arr, k, n));
+    }
+
+    private static int getPairsCount(int[] arr, int k, int n) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int diff = k - arr[i];
+            if (map.containsKey(diff)){
+                count +=map.get(diff);
+            }
+            map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
+        }
+        return count;
+    }
+}
